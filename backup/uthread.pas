@@ -211,8 +211,11 @@ begin
       // > 0  number of hours
     end;
     for i:= 0 to Self.Triggers.Count -1 do
+    begin
+      SendDebug(IntToStr(ord(ttTime)));
+      SendDebug(IntToStr(ord(Self.Triggers[i].TriggerType)));
       with NewTrigger((*ttTime*)
-        TWinTaskTriggerType(Self.Triggers[i].TriggerType)) do
+        TWinTaskTriggerType((Self.Triggers[i].TriggerType))) do
       begin
         // добавлено
         //TriggerType:= TWinTaskTriggerType(ord(Self.Triggers[i].TriggerType));
@@ -223,6 +226,7 @@ begin
         Duration:=0;     // unlimited
         ExecutionTimeLimit:=0;
       end;
+    end;
   end;
 end;
 
